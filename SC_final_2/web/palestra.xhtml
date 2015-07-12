@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cadastro Palestra</title>
+    </h:head>
+    <h:body>
+        <h:form id="Palestra">
+            <ui:include src="/menu.xhtml" />
+            <p:panel id="panel" header="Cadastro Palestra">
+                <h:panelGrid columns="3" cellpadding="5">
+                    <!-- colocar value no botao -->
+                    <h:outputLabel for="titulo" value="Titulo:"></h:outputLabel>
+                    <p:inputText id="titulo" value="#{palestrasBean.palestras.titulo}" label="Titulo"></p:inputText>
+                    
+                    <br></br>
+                    <!-- colocar value no botao -->
+                    <h:outputLabel for="valor" value="Valor:"></h:outputLabel>
+                    <p:inputText id="valor" value="#{palestrasBean.palestras.valor}" label="Valor"></p:inputText>
+                    
+                    <br></br>
+                    <!-- colocar value no botao -->
+                    <h:outputLabel for="dataPalestra" value="Data Palestra:"></h:outputLabel>
+                    <p:inputMask id="dataPalestra"   
+                                 value="#{palestrasBean.palestras.datapalestra}"                                       
+                                 mask="99/99/9999"></p:inputMask> 
+                    <br></br>
+                    
+                    <h:outputLabel for="horario" value="Horario:"></h:outputLabel>
+                    <p:inputMask id="horario"   
+                                 value="#{palestrasBean.palestras.horario}"                                       
+                                 mask="99:99"></p:inputMask> 
+                    
+                    <br></br>
+                    <!-- colocar value no botao  converter="entidadeConverter"-->
+                    <h:outputLabel for="apresentador" value="Apresentador:" />
+                    <p:selectOneMenu id="apresentador" value="#{palestrasBean.palestras.idpalestrasApresentador}" required="true" filter="true" filterMatchMode="startsWith">
+                        <f:selectItems value="#{palestrasBean.apresentadores}" var="apresentador" itemLabel="#{apresentador.nome}" itemValue="#{apresentador}" />
+                    </p:selectOneMenu>
+                <!-- colocar action no botao -->
+                <p:commandButton action="#{palestrasBean.salvar()}" value="Cadastrar" ajax="true"  
+                                 title="Cadastrar Palestra" validateClient="false"></p:commandButton>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+
